@@ -1,0 +1,21 @@
+---
+version: '3.8'
+
+services:
+  prometheus:
+    ports:
+        - '9090:9090'
+    volumes:
+        - '${PWD}/prometheus:/etc/prometheus'
+    networks: 
+        - grafana_net
+    image: prom/prometheus
+  grafana:
+    image: grafana/grafana
+    ports:
+      - '3000:3000'
+    networks:
+      - 'grafana_net'
+
+networks:
+  grafana_net:
